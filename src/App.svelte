@@ -17,10 +17,15 @@
       text: "Good Service",
     },
   ];
+
+  const deleteFeedback = (e) => {
+    const feedbackId = e.detail;
+    feedback = feedback.filter((i) => i.id !== feedbackId);
+  };
 </script>
 
 <main class="container">
-  <FeedbackList {feedback} />
+  <FeedbackList {feedback} on:feedback-delete={deleteFeedback} />
 </main>
 
 <style>

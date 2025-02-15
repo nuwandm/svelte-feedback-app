@@ -1,12 +1,18 @@
 <script>
+  import { createEventDispatcher } from "svelte";
   import Card from "./Card.svelte";
+
   export let fb = {};
-  console.log("fb", fb);
+  let dispatch = createEventDispatcher();
+
+  const closeButtonHandler = (id) => {
+    dispatch("feedback-delete", id);
+  };
 </script>
 
 <Card>
   <div class="num-display">{fb.rating}</div>
-  <div class="close">x</div>
+  <button on:click={() => closeButtonHandler(fb.id)} class="close">x</button>
   <p class="text-display">
     {fb.text}
   </p>
