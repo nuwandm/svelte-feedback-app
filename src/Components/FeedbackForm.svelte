@@ -3,6 +3,7 @@
   import Button from "./Button.svelte";
   import RatingSelect from "./RatingSelect.svelte";
   import { createEventDispatcher } from "svelte";
+  import { v4 as uuidv4 } from "uuid";
 
   let text = "";
   let rating = 10;
@@ -25,6 +26,7 @@
     dispatch("feedback-add", {
       text,
       rating,
+      id: uuidv4(),
     });
   };
 

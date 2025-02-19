@@ -22,8 +22,9 @@
   ];
 
   $: count = feedback.length;
-  $: average =
-    feedback.reduce((acc, current) => acc + current.rating, 0) / count;
+  $: average = count
+    ? (feedback.reduce((acc, { rating }) => acc + rating, 0) / count).toFixed(1)
+    : "0.0";
 
   const deleteFeedback = (e) => {
     const feedbackId = e.detail;
@@ -31,13 +32,8 @@
   };
 
   const addFeedback = (e) => {
-    const { text, rating } = e.detail;
-    const newFeedbackObj = {
-      id: feedback.length + 1,
-      rating: rating,
-      text: text,
-    };
-    feedback = [...feedback, newFeedbackObj];
+    let newFeedback = e.detail;
+    feedback = [...feedback, newFeedback];
   };
 </script>
 
