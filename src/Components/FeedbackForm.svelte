@@ -22,13 +22,9 @@
   };
 
   const handleSubmit = () => {
-    // dispatch("feedback-add", {
-    //   text,
-    //   rating,
-    //   id: uuidv4(),
-    // });
+    const newFeedback = { text, rating, id: uuidv4() };
     feedBackStore.update((currentFB) => {
-      return [...currentFB, { text, rating, id: uuidv4() }];
+      return [...currentFB, newFeedback];
     });
     text = "";
     btnDisabled = true;
