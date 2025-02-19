@@ -28,6 +28,7 @@
       rating,
       id: uuidv4(),
     });
+    text = "";
   };
 
   const handleSelect = (e) => (rating = e.detail);
