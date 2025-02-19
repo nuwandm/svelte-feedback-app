@@ -1,18 +1,19 @@
 <script>
-  import { createEventDispatcher } from "svelte";
+  import { feedBackStore } from "../store";
   import Card from "./Card.svelte";
 
   export let fb = {};
-  let dispatch = createEventDispatcher();
 
-  const closeButtonHandler = (id) => {
-    dispatch("feedback-delete", id);
+  const handleDeleteFeedback = (id) => {
+    feedBackStore.update((currentFB) => {
+      return currentFB.filter((item) => item.id !== id);
+    });
   };
 </script>
 
 <Card>
   <div class="num-display">{fb.rating}</div>
-  <button on:click={() => closeButtonHandler(fb.id)} class="close">x</button>
+  <button on:click={() => handleDeleteFeedback(fb.id)} class="close">x</button>
   <p class="text-display">
     {fb.text}
   </p>

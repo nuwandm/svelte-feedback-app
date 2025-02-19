@@ -2,15 +2,14 @@
   import Card from "./Card.svelte";
   import Button from "./Button.svelte";
   import RatingSelect from "./RatingSelect.svelte";
-  import { createEventDispatcher } from "svelte";
   import { v4 as uuidv4 } from "uuid";
+  import { feedBackStore } from "../store";
 
   let text = "";
   let rating = 10;
   let btnDisabled = true;
   let message;
   const min = 10;
-  const dispatch = createEventDispatcher();
 
   const handleInput = () => {
     if (text.trim().length <= min) {
@@ -23,10 +22,13 @@
   };
 
   const handleSubmit = () => {
-    dispatch("feedback-add", {
-      text,
-      rating,
-      id: uuidv4(),
+    // dispatch("feedback-add", {
+    //   text,
+    //   rating,
+    //   id: uuidv4(),
+    // });
+    feedBackStore.update((currentFB) => {
+      return [...currentFB, { text, rating, id: uuidv4() }];
     });
     text = "";
     btnDisabled = true;

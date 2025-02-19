@@ -1,5 +1,12 @@
 <script>
-  export let { count, average } = {};
+  import { feedBackStore } from "../store";
+
+  $: count = $feedBackStore.length; // we can access the store directly with the $ sign
+  $: average = count
+    ? (
+        $feedBackStore.reduce((acc, { rating }) => acc + rating, 0) / count
+      ).toFixed(1)
+    : "0.0";
 </script>
 
 <div class="feedback-stats">
