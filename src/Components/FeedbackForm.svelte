@@ -29,6 +29,7 @@
       id: uuidv4(),
     });
     text = "";
+    btnDisabled = true;
   };
 
   const handleSelect = (e) => (rating = e.detail);
